@@ -133,7 +133,8 @@ class SocialLoginSerializer(serializers.Serializer):
                 basic_auth=adapter.basic_auth,
             )
             try:
-                token = client.get_access_token(code)
+                pkce_code_verifier = request.session.get("pkce_code_verifier")
+                token = client.get_access_token(code, pkce_code_verifier=pkce_code_verifier)
             except OAuth2Error as ex:
                 raise serializers.ValidationError(
                     _('Failed to exchange code for access token')
