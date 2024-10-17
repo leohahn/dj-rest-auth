@@ -33,12 +33,13 @@ setup(
     ],
     extras_require={
         'with-social': [
-            'django-allauth[socialaccount] @ git+https://github.com/leohahn/django-allauth.git@fix/custom-scope',
+            # 'django-allauth[socialaccount] @ git+https://github.com/leohahn/django-allauth.git@fix/custom-scope',
+            'django-allauth[socialaccount]>=65.0.2',
         ],
     },
     tests_require=[
         'coveralls>=1.11.1',
-        # 'django-allauth>=0.57.0',
+        'django-allauth>=65.0.2',
         'djangorestframework-simplejwt==4.6.0',
         'responses==0.12.1',
         'unittest-xml-reporting==3.0.4',
