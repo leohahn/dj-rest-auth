@@ -132,7 +132,7 @@ class SocialLoginSerializer(serializers.Serializer):
             try:
                 from allauth.socialaccount.internal import statekit
                 state = statekit.unstash_last_state(request)
-                pkce_code_verifier = state.get("pkce_code_verifier")
+                pkce_code_verifier = state.get("pkce_code_verifier") if state is not None else None
                 token = client.get_access_token(code, pkce_code_verifier=pkce_code_verifier)
             except OAuth2Error as ex:
                 raise serializers.ValidationError(
